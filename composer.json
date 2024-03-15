@@ -85,7 +85,7 @@
     },
     "scripts": {
         "test": [
-            "vendor/bin/pest --parallel"
+            "vendor/bin/pest"
         ]
     }
 }

@@ -13,9 +13,9 @@ it('checks the export of data from tables to a dump file', function () {
 
     artisan(DumpCommand::class, ['--path' => $path])->run();
 
-    $content = file_get_contents($path);
-
-    expect($content)
-        ->toBeDataContains()
-        ->toBeContainsMigrations();
+    expect(file_get_contents($path))
+        ->toBeContainsMigrations()
+        ->toBeDataContains('foo')
+        ->toBeDataContains('bar')
+        ->notToBeDataContains('baz');
 });

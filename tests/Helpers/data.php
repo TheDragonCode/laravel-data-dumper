@@ -2,16 +2,24 @@
 
 declare(strict_types=1);
 
-expect()->extend('toBeDataContains', function () {
-    foreach (allTableNames() as $table) {
-        expect($this->value)
-            ->toContain(tableName($table))
-            ->toContain(columnName($table));
+expect()->extend('toBeDataContains', function (string $name) {
+    expect($this->value)
+        ->toContain(tableName($name))
+        ->toContain(columnName($name));
 
-        circleProcess(
-            fn (int $i) => expect($this->value)->toContain(valueName($table, $i))
-        );
-    }
+    circleProcess(
+        fn (int $i) => expect($this->value)->toContain(valueName($name, $i))
+    );
+});
+
+expect()->extend('notToBeDataContains', function (string $name) {
+    expect($this->value)
+        ->toContain(tableName($name))
+        ->toContain(columnName($name));
+
+    circleProcess(
+        fn (int $i) => expect($this->value)->not->toContain(valueName($name, $i))
+    );
 });
 
 expect()->extend('toBeContainsMigrations', function () {
