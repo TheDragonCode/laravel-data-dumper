@@ -14,7 +14,7 @@ Laravel's standard mechanism for [squashing migrations](https://laravel.com/docs
 is very good, but it has a huge drawback - it only exports the database schema and the contents of
 a single table - `migrations`.
 
-And this approach is quite acceptable on small projects where you need to quickly reduce the number of migration files
+And this approach is quite acceptable on small projects where you need to quickly reduce the number of migration files, 
 and there is no binding to the table contents.
 
 But what if you have a large project with several people working on it, and you constantly run tests that must contain
@@ -25,8 +25,6 @@ This package will help you in this case! It "sees" when you call the console com
 unloads the data from your selected tables into SQL file.
 
 All you need to do is install the package and add the new setting to the `config/database.php` file and that's it.
-
-Let's get down to business!
 
 ## Requirements
 
@@ -83,7 +81,8 @@ return [
 
 After that, add to the array the names of the tables for which you want to export data.
 
-That's it. Now run the `php artisan schema:dump` console command and enjoy the result.
+That's it. Now run the [`php artisan schema:dump`](https://laravel.com/docs/migrations#squashing-migrations)
+console command and enjoy the result.
 
 
 ## License
