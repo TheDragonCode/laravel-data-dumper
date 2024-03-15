@@ -28,6 +28,15 @@ All you need to do is install the package and add the new setting to the `config
 
 Let's get down to business!
 
+## Requirements
+
+- Laravel 10, 11
+- PHP 8.2 or higher
+- (optional) Databases:
+  - Sqlite: 3
+  - MySQL 5.7, 8.0, 8.1, 8.2, 8.3
+  - PostgreSQL 12, 13, 14, 15, 16
+
 ## Installation
 
 To get the latest version of `DDD`, simply require the project using [Composer](https://getcomposer.org):
@@ -45,28 +54,6 @@ Or manually update `require-dev` block of `composer.json` and run `composer upda
     }
 }
 ```
-
-### Compatibility
-
-| Laravel \ PHP | 8.2 | 8.3 |
-|---------------|:---:|:---:|
-| 11            |  ✅  |  ✅  |
-| 10            |  ✅  |  ✅  |
-
-| Laravel \ MySQL | 5.7 | 8.0 | 8.1 | 8.2 | 8.3 |
-|-----------------|:---:|:---:|:---:|:---:|:---:|
-| 11              |  ✅  |  ✅  |  ✅  |  ✅  |  ✅  |
-| 10              |  ✅  |  ✅  |  ✅  |  ✅  |  ✅  |
-
-| Laravel \ Postgres | 12 | 13 | 14 | 15 | 16 |
-|--------------------|:--:|:--:|:--:|:--:|:--:|
-| 11                 | ✅  | ✅  | ✅  | ✅  | ✅  |
-| 10                 | ✅  | ✅  | ✅  | ✅  | ✅  |
-
-| Laravel \ SQLite | 3 |
-|------------------|---|
-| 11               | ✅ |
-| 10               | ✅ |
 
 ## Configuration
 
