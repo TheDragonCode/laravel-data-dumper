@@ -50,7 +50,7 @@ Or manually update `require-dev` block of `composer.json` and run `composer upda
 ```json
 {
     "require-dev": {
-        "dragon-code/laravel-data-dumper": "^3.0"
+        "dragon-code/laravel-data-dumper": "^1.0"
     }
 }
 ```
