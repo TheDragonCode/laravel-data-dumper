@@ -1,9 +1,20 @@
 <?php
 
 return [
-    'schema' => [
-        // Here you need to list all the names of the tables for which you need to dump data.
+    /*
+    |--------------------------------------------------------------------------
+    | Schema Settings
+    |--------------------------------------------------------------------------
+    |
+    | This block will contain the names of the tables for which it is
+    | necessary to export data along with the table schema.
+    |
+    */
 
-        'tables' => [],
+    'schema' => [
+        'tables' => [
+            // 'foo',
+            // 'bar',
+        ],
     ],
 ];
