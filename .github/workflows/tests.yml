@@ -100,10 +100,19 @@ jobs:
           POSTGRES_DB: laravel
           POSTGRES_USER: root
           POSTGRES_PASSWORD: root
+        options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        
+      - name: Fix for Postgres Client
+        run: |
+          wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+          sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+          sudo apt update
+          sudo apt install postgresql-client-${{ matrix.psql }} -y
+          pg_dump --version
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
