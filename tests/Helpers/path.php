@@ -16,7 +16,7 @@ function dumpPath(string $name): string
 {
     $path = __DIR__ . '/../tmp/' . $name;
 
-    if (!is_dir($directory = dirname($path))) {
+    if (! is_dir($directory = dirname($path))) {
         mkdir($directory);
     }
 

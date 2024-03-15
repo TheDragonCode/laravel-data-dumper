@@ -34,16 +34,16 @@ class Dumper
     protected function schemaState(Connection $connection): ?SchemaState
     {
         return match (get_class($connection)) {
-            SQLiteConnection::class => new SQLiteSchemaState($connection, null, null),
-            MySqlConnection::class => new MySqlSchemaState($connection, null, null),
+            SQLiteConnection::class   => new SQLiteSchemaState($connection, null, null),
+            MySqlConnection::class    => new MySqlSchemaState($connection, null, null),
             PostgresConnection::class => new PostgresSchemaState($connection, null, null),
-            default => null
+            default                   => null
         };
     }
 
     protected function isNotMigration(string $table): bool
     {
-        return $this->migrationTable() !== $table;
+        return $table !== $this->migrationTable();
     }
 
     protected function migrationTable(): string

@@ -13,8 +13,7 @@ class DumpListener
     public function __construct(
         protected readonly Tables $tables,
         protected readonly Dumper $dumper
-    ) {
-    }
+    ) {}
 
     public function handle(SchemaDumped $event): void
     {

@@ -5,7 +5,7 @@ use Tests\TestCase;
 
 uses(TestCase::class, RefreshDatabase::class)
     ->beforeAll(function () {
-        if (!file_exists($database = databasePath())) {
+        if (! file_exists($database = databasePath())) {
             file_put_contents($database, '');
         }
     })
