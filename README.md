@@ -30,7 +30,7 @@ All you need to do is install the package and add the new setting to the `config
 
 - Laravel 10, 11
 - PHP 8.2 or higher
-- (optional) Databases:
+- Databases:
   - Sqlite: 3
   - MySQL 5.7, 8.0, 8.1, 8.2, 8.3
   - PostgreSQL 12, 13, 14, 15, 16
