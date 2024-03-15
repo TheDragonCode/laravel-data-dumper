@@ -41,10 +41,6 @@ trait About
 
     protected function loadPackageName(): string
     {
-        if (! is_null($this->packageName)) {
-            return $this->packageName;
-        }
-
-        return $this->packageName = Arr::ofFile($this->composer)->get('name');
+        return $this->packageName ??= Arr::ofFile($this->composer)->get('name');
     }
 }

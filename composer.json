@@ -43,7 +43,8 @@
     ],
     "require": {
         "php": "^8.2",
-        "composer-runtime-api": "^2.2"
+        "composer-runtime-api": "^2.2",
+        "dragon-code/support": "^6.13"
     },
     "require-dev": {
         "mockery/mockery": "^1.3.1",
