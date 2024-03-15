@@ -30,7 +30,7 @@ jobs:
         run: composer require laravel/framework:^${{ matrix.laravel }}
 
       - name: Execute tests
-        run: sudo vendor/bin/phpunit
+        run: composer test
   
 #  mysql:
 #    runs-on: ubuntu-latest
@@ -69,7 +69,7 @@ jobs:
 #        run: composer require laravel/framework:^${{ matrix.laravel }}
 #
 #      - name: Execute tests
-#        run: sudo vendor/bin/phpunit
+#        run: composer test
 #        env:
 #          DB_CONNECTION: mysql
 #          MYSQL_HOST: 127.0.0.1
@@ -111,7 +111,7 @@ jobs:
 #        run: composer require laravel/framework:^${{ matrix.laravel }}
 #
 #      - name: Execute tests
-#        run: sudo vendor/bin/phpunit
+#        run: composer test
 #        env:
 #          DB_CONNECTION: pgsql
 #          PGSQL_HOST: 127.0.0.1
