@@ -49,7 +49,9 @@
     "require-dev": {
         "mockery/mockery": "^1.3.1",
         "orchestra/testbench": "^8.0 || ^9.0",
-        "phpunit/phpunit": "^10.0"
+        "pestphp/pest": "^2.34",
+        "pestphp/pest-plugin-laravel": "^2.3",
+        "ext-pdo": "*"
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
@@ -68,6 +70,7 @@
             "dragon-code/codestyler": true,
             "ergebnis/composer-normalize": true,
             "friendsofphp/php-cs-fixer": true,
+            "pestphp/pest-plugin": true,
             "symfony/thanks": true
         },
         "preferred-install": "dist",
@@ -79,5 +82,10 @@
                 "DragonCode\\LaravelDataDumper\\ServiceProvider"
             ]
         }
+    },
+    "scripts": {
+        "test": [
+            "vendor/bin/pest --parallel"
+        ]
     }
 }

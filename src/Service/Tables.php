@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DragonCode\LaravelDataDumper\Service;
 
-use stdClass;
+use Illuminate\Support\Facades\Schema;
 
 class Tables
 {
@@ -20,20 +20,11 @@ class Tables
 
     protected function flatten(): array
     {
-        return array_map(function (array | stdClass $item) {
-            return is_array($item) ? $item['name'] : $item->name;
-        }, $this->getTables());
+        return array_column($this->getTables(), 'name');
     }
 
     protected function getTables(): array
     {
-        return method_exists($this->schema(), 'getAllTables')
-            ? $this->schema()->getAllTables()
-            : $this->schema()->getTables();
-    }
-
-    protected function schema()
-    {
-        return app('db.schema');
+        return Schema::getTables();
     }
 }

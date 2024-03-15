@@ -8,7 +8,7 @@ use DragonCode\LaravelDataDumper\Service\Dumper;
 use DragonCode\LaravelDataDumper\Service\Tables;
 use Illuminate\Database\Events\SchemaDumped;
 
-class DataDumpListener
+class DumpListener
 {
     public function __construct(
         protected readonly Tables $tables,

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace DragonCode\LaravelDataDumper;
 
 use DragonCode\LaravelDataDumper\Concerns\About;
-use DragonCode\LaravelDataDumper\Listeners\DataDumpListener;
+use DragonCode\LaravelDataDumper\Listeners\DumpListener;
 use Illuminate\Database\Events\SchemaDumped;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
@@ -29,7 +29,7 @@ class ServiceProvider extends BaseServiceProvider
 
     protected function bootListener(): void
     {
-        Event::listen(SchemaDumped::class, DataDumpListener::class);
+        Event::listen(SchemaDumped::class, DumpListener::class);
     }
 
     protected function registerConfig(): void
