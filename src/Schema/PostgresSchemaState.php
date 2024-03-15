@@ -15,12 +15,12 @@ class PostgresSchemaState extends BaseSchemaState
             $this->baseDumpCommand() . ' -t ' . $this->migrationTable . ' --data-only >> ' . $path,
         ]);
 
-        $commands->map(function ($command, $path) {
+        $commands->map(function (string $command, int | string $path) {
             $this->makeProcess($command)->mustRun($this->output, $this->variables($path));
         });
     }
 
-    protected function variables(string $path): array
+    protected function variables(int | string $path): array
     {
         return array_merge($this->baseVariables($this->connection->getConfig()), [
             'LARAVEL_LOAD_PATH' => $path,
