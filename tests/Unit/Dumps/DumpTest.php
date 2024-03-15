@@ -18,4 +18,4 @@ it('checks the export of data from tables to a dump file', function () {
         ->toBeDataContains('foo')
         ->toBeDataContains('bar')
         ->notToBeDataContains('baz');
-});
+})->group('SQLite', 'MySQL', 'Postgres');

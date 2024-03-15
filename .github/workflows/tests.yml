@@ -30,7 +30,7 @@ jobs:
         run: composer require laravel/framework:^${{ matrix.laravel }}
 
       - name: Execute tests
-        run: composer test
+        run: composer test --group SQLite
   
   mysql:
     runs-on: ubuntu-latest
@@ -73,7 +73,7 @@ jobs:
           command: composer require laravel/framework:^${{ matrix.laravel }}
 
       - name: Execute tests
-        run: composer test
+        run: composer test --group MySQL
         env:
           DB_CONNECTION: mysql
           DB_COLLATION: utf8mb4_unicode_ci
@@ -116,7 +116,7 @@ jobs:
         run: composer require laravel/framework:^${{ matrix.laravel }}
 
       - name: Execute tests
-        run: composer test
+        run: composer test --group Postgres
         env:
           DB_CONNECTION: pgsql
           PGSQL_HOST: 127.0.0.1
