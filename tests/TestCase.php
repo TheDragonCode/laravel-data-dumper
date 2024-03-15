@@ -28,6 +28,8 @@ abstract class TestCase extends BaseTestCase
             tableName('bar'),
         ]);
 
+        $config->set('database.default', env('DB_CONNECTION', 'sqlite'));
+
         $config->set('database.connections', [
             'sqlite' => [
                 'driver' => 'sqlite',
