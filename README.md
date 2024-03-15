@@ -81,7 +81,7 @@ return [
 
 After that, add to the array the names of the tables for which you want to export data.
 
-That's it. Now run the [`php artisan schema:dump`](https://laravel.com/docs/migrations#squashing-migrations)
+That's it. Now you can run the [`php artisan schema:dump`](https://laravel.com/docs/migrations#squashing-migrations)
 console command and enjoy the result.
 
 
