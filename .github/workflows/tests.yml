@@ -3,129 +3,129 @@ name: Tests
 on: [ push, pull_request ]
 
 jobs:
-  
-  sqlite:
-    runs-on: ubuntu-latest
     
-    strategy:
-      fail-fast: true
-      matrix:
-        php: [ "8.2", "8.3" ]
-        laravel: [ "10.0", "11.0" ]
-    
-    name: PHP ${{ matrix.php }}, Laravel ${{ matrix.laravel }}, SQLite
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, pdo_mysql, pdo_pgsql
-          coverage: xdebug
-
-      - name: Install dependencies
-        run: composer require laravel/framework:^${{ matrix.laravel }}
-
-      - name: Execute tests
-        run: vendor/bin/pest --group SQLite
-  
-  mysql:
-    runs-on: ubuntu-latest
-    
-    strategy:
-      fail-fast: true
-      matrix:
-        php: [ "8.2", "8.3" ]
-        laravel: [ "10.0", "11.0" ]
-        mysql: [ "5.7", "8.0", "8.1", "8.2", "8.3" ]
-    
-    name: PHP ${{ matrix.php }}, Laravel ${{ matrix.laravel }}, MySQL ${{ matrix.mysql }}
-
-    services:
-      mysql:
-        image: mysql:${{ matrix.mysql }}
-        env:
-          MYSQL_DATABASE: laravel
-          MYSQL_ROOT_PASSWORD: root
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql, :php-psr
-          coverage: xdebug
-
-      - name: Install dependencies
-        uses: nick-fields/retry@v3
-        with:
-          timeout_minutes: 5
-          max_attempts: 5
-          command: composer require laravel/framework:^${{ matrix.laravel }}
-
-      - name: Execute tests
-        run: vendor/bin/pest --group MySQL
-        env:
-          DB_CONNECTION: mysql
-          DB_COLLATION: utf8mb4_unicode_ci
-          MYSQL_HOST: 127.0.0.1
-
-  postgres:
-    runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: true
-      matrix:
-        php: [ "8.2", "8.3" ]
-        laravel: [ "10.0", "11.0" ]
-        psql: [ "12", "13", "14", "15", "16" ]
-
-    name: PHP ${{ matrix.php }}, Laravel ${{ matrix.laravel }}, PostgreSQL ${{ matrix.psql }}
-
-    services:
-      postgres:
-        image: postgres:${{ matrix.psql }}
-        ports:
-          - 5432:5432
-        env:
-          POSTGRES_DB: laravel
-          POSTGRES_USER: root
-          POSTGRES_PASSWORD: root
-        options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    sqlite:
+        runs-on: ubuntu-latest
         
-      - name: Fix for Postgres Client
-        run: |
-          wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-          sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-          sudo apt update
-          sudo apt install postgresql-client-${{ matrix.psql }} -y
-          pg_dump --version
+        strategy:
+            fail-fast: true
+            matrix:
+                php: [ "8.2", "8.3" ]
+                laravel: [ "10.0", "11.0" ]
+        
+        name: PHP ${{ matrix.php }}, Laravel ${{ matrix.laravel }}, SQLite
+        
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v4
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, pdo_mysql, pdo_pgsql
-          coverage: xdebug
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php }}
+                    extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, pdo_mysql, pdo_pgsql
+                    coverage: xdebug
 
-      - name: Install dependencies
-        run: composer require laravel/framework:^${{ matrix.laravel }}
+            -   name: Install dependencies
+                run: composer require laravel/framework:^${{ matrix.laravel }}
 
-      - name: Execute tests
-        run: vendor/bin/pest --group Postgres
-        env:
-          DB_CONNECTION: pgsql
-          PGSQL_HOST: 127.0.0.1
+            -   name: Execute tests
+                run: vendor/bin/pest --group SQLite
+    
+    mysql:
+        runs-on: ubuntu-latest
+        
+        strategy:
+            fail-fast: true
+            matrix:
+                php: [ "8.2", "8.3" ]
+                laravel: [ "10.0", "11.0" ]
+                mysql: [ "5.7", "8.0", "8.1", "8.2", "8.3" ]
+        
+        name: PHP ${{ matrix.php }}, Laravel ${{ matrix.laravel }}, MySQL ${{ matrix.mysql }}
+        
+        services:
+            mysql:
+                image: mysql:${{ matrix.mysql }}
+                env:
+                    MYSQL_DATABASE: laravel
+                    MYSQL_ROOT_PASSWORD: root
+                ports:
+                    - 3306:3306
+                options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v4
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php }}
+                    extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql, :php-psr
+                    coverage: xdebug
+
+            -   name: Install dependencies
+                uses: nick-fields/retry@v3
+                with:
+                    timeout_minutes: 5
+                    max_attempts: 5
+                    command: composer require laravel/framework:^${{ matrix.laravel }}
+
+            -   name: Execute tests
+                run: vendor/bin/pest --group MySQL
+                env:
+                    DB_CONNECTION: mysql
+                    DB_COLLATION: utf8mb4_unicode_ci
+                    MYSQL_HOST: 127.0.0.1
+    
+    postgres:
+        runs-on: ubuntu-latest
+        
+        strategy:
+            fail-fast: true
+            matrix:
+                php: [ "8.2", "8.3" ]
+                laravel: [ "10.0", "11.0" ]
+                psql: [ "12", "13", "14", "15", "16" ]
+        
+        name: PHP ${{ matrix.php }}, Laravel ${{ matrix.laravel }}, PostgreSQL ${{ matrix.psql }}
+        
+        services:
+            postgres:
+                image: postgres:${{ matrix.psql }}
+                ports:
+                    - 5432:5432
+                env:
+                    POSTGRES_DB: laravel
+                    POSTGRES_USER: root
+                    POSTGRES_PASSWORD: root
+                options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
+        
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v4
+
+            -   name: Fix for Postgres Client
+                run: |
+                    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+                    sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+                    sudo apt update
+                    sudo apt install postgresql-client-${{ matrix.psql }} -y
+                    pg_dump --version
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php }}
+                    extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, pdo_mysql, pdo_pgsql
+                    coverage: xdebug
+
+            -   name: Install dependencies
+                run: composer require laravel/framework:^${{ matrix.laravel }}
+
+            -   name: Execute tests
+                run: vendor/bin/pest --group Postgres
+                env:
+                    DB_CONNECTION: pgsql
+                    PGSQL_HOST: 127.0.0.1
