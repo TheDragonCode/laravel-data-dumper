@@ -15,7 +15,7 @@ test('checks an attempt to export the migration table from postgres', function (
 
     expect(file_get_contents($path))
         ->toBeContainsMigrations()
-        ->toBeWordsCount($migrations, 5)
+        ->toBeWordsCount("COPY public.$migrations", 1)
         ->notToBeDataContains('foo')
         ->notToBeDataContains('bar')
         ->notToBeDataContains('baz');
