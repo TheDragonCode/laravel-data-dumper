@@ -1,6 +1,6 @@
 {
     "name": "dragon-code/laravel-data-dumper",
-    "description": "Performing any actions during the deployment process",
+    "description": "Adding data from certain tables when executing the `php artisan schema:dump` console command",
     "license": "MIT",
     "type": "library",
     "version": "1.0.0",
