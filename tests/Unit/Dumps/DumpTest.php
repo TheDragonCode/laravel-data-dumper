@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Database\Console\DumpCommand;
-
-use function Pest\Laravel\artisan;
+use Illuminate\Support\Facades\Artisan;
 
 it('checks the export of data from tables to a dump file', function () {
     expect()
@@ -11,7 +10,7 @@ it('checks the export of data from tables to a dump file', function () {
 
     $path = dumpStoragePath();
 
-    artisan(DumpCommand::class, ['--path' => $path])->run();
+    Artisan::call(DumpCommand::class, ['--path' => $path]);
 
     expect(file_get_contents($path))
         ->toBeContainsMigrations()
