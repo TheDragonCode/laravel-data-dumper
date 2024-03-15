@@ -12,6 +12,8 @@ test('checks an attempt to export the migration table', function () {
     $path = dumpStoragePath();
 
     artisan(DumpCommand::class, ['--path' => $path])->run();
+    
+    echo file_get_contents($path);
 
     expect(file_get_contents($path))
         ->toBeContainsMigrations()
