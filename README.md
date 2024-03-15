@@ -39,7 +39,7 @@ Let's get down to business!
 
 ## Installation
 
-To get the latest version of `DDD`, simply require the project using [Composer](https://getcomposer.org):
+To get the latest version of `Database Data Dumper`, simply require the project using [Composer](https://getcomposer.org):
 
 ```Bash
 composer require dragon-code/laravel-data-dumper --dev
