@@ -15,7 +15,7 @@ test('checks an attempt to export the migration table from mysql', function () {
 
     expect(file_get_contents($path))
         ->toBeContainsMigrations()
-        ->toBeWordsCount($migrations, 5)
+        ->toBeWordsCount("INSERT INTO `$migrations`", 3)
         ->notToBeDataContains('foo')
         ->notToBeDataContains('bar')
         ->notToBeDataContains('baz');
