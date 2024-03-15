@@ -8,10 +8,96 @@
 [![Github Workflow Status][badge_build]][link_build]
 [![License][badge_license]][link_license]
 
+## Introduction
 
-## Documentation
+Laravel's standard mechanism for [squashing migrations](https://laravel.com/docs/migrations#squashing-migrations)
+is very good, but it has a huge drawback - it only exports the database schema and the contents of
+a single table - `migrations`.
 
-Coming soon
+And this approach is quite acceptable on small projects where you need to quickly reduce the number of migration files
+and there is no binding to the table contents.
+
+But what if you have a large project with several people working on it, and you constantly run tests that must contain
+some data from production? For example, statuses, lists and other important data. When do you have everything tied to
+specific identifiers and enums?
+
+This package will help you in this case! It "sees" when you call the console command `php artisan schema:dump` and
+unloads the data from your selected tables into SQL file.
+
+All you need to do is install the package and add the new setting to the `config/database.php` file and that's it.
+
+Let's get down to business!
+
+## Installation
+
+To get the latest version of `DDD`, simply require the project using [Composer](https://getcomposer.org):
+
+```Bash
+composer require dragon-code/laravel-data-dumper --dev
+```
+
+Or manually update `require-dev` block of `composer.json` and run `composer update`.
+
+```json
+{
+    "require-dev": {
+        "dragon-code/laravel-data-dumper": "^3.0"
+    }
+}
+```
+
+### Compatibility
+
+| Laravel \ PHP | 8.2 | 8.3 |
+|---------------|:---:|:---:|
+| 11            |  ✅  |  ✅  |
+| 10            |  ✅  |  ✅  |
+
+| Laravel \ MySQL | 5.7 | 8.0 | 8.1 | 8.2 | 8.3 |
+|-----------------|:---:|:---:|:---:|:---:|:---:|
+| 11              |  ✅  |  ✅  |  ✅  |  ✅  |  ✅  |
+| 10              |  ✅  |  ✅  |  ✅  |  ✅  |  ✅  |
+
+| Laravel \ Postgres | 12 | 13 | 14 | 15 | 16 |
+|--------------------|:--:|:--:|:--:|:--:|:--:|
+| 11                 | ✅  | ✅  | ✅  | ✅  | ✅  |
+| 10                 | ✅  | ✅  | ✅  | ✅  | ✅  |
+
+| Laravel \ SQLite | 3 |
+|------------------|---|
+| 11               | ✅ |
+| 10               | ✅ |
+
+## Configuration
+
+Since Laravel's mechanism for publishing configuration files does not allow them to be merged on the fly,
+a new array element must be added to the [`config/database.php`](config/settings.php) file:
+
+```php
+return [
+    /*
+    |--------------------------------------------------------------------------
+    | Schema Settings
+    |--------------------------------------------------------------------------
+    |
+    | This block will contain the names of the tables for which it is
+    | necessary to export data along with the table schema.
+    |
+    */
+
+    'schema' => [
+        'tables' => [
+            // 'foo',
+            // 'bar',
+        ],
+    ],
+];
+```
+
+After that, add to the array the names of the tables for which you want to export data.
+
+That's it. Now run the `php artisan schema:dump` console command and enjoy the result.
+
 
 ## License
 
