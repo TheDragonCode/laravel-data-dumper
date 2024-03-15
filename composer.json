@@ -1,0 +1,82 @@
+{
+    "name": "dragon-code/laravel-data-dumper",
+    "description": "Performing any actions during the deployment process",
+    "license": "MIT",
+    "type": "library",
+    "version": "1.0.0",
+    "keywords": [
+        "laravel",
+        "migration",
+        "migrations",
+        "database",
+        "schema",
+        "dumper",
+        "dump",
+        "squash",
+        "dragon-code",
+        "andrey-helldar"
+    ],
+    "authors": [
+        {
+            "name": "Andrey Helldar",
+            "email": "helldar@dragon-code.pro",
+            "homepage": "https://dragon-code.pro"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/TheDragonCode/laravel-data-dumper/issues",
+        "source": "https://github.com/TheDragonCode/laravel-data-dumper"
+    },
+    "funding": [
+        {
+            "type": "boosty",
+            "url": "https://boosty.to/dragon-code"
+        },
+        {
+            "type": "yoomoney",
+            "url": "https://yoomoney.ru/to/410012608840929"
+        },
+        {
+            "type": "donationalerts",
+            "url": "https://www.donationalerts.com/r/dragon_code"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "composer-runtime-api": "^2.2"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.3.1",
+        "orchestra/testbench": "^8.0 || ^9.0",
+        "phpunit/phpunit": "^10.0"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "DragonCode\\LaravelDataDumper\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "dragon-code/codestyler": true,
+            "ergebnis/composer-normalize": true,
+            "friendsofphp/php-cs-fixer": true,
+            "symfony/thanks": true
+        },
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DragonCode\\LaravelDataDumper\\ServiceProvider"
+            ]
+        }
+    }
+}
