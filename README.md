@@ -10,21 +10,9 @@
 
 ## Introduction
 
-Laravel's standard mechanism for [squashing migrations](https://laravel.com/docs/migrations#squashing-migrations)
-is very good, but it has a huge drawback - it only exports the database schema and the contents of
-a single table - `migrations`.
+The [squashing migrations](https://laravel.com/docs/migrations#squashing-migrations) in Laravel does not export data from tables?
 
-And this approach is quite acceptable on small projects where you need to quickly reduce the number of migration files, 
-and there is no binding to the table contents.
-
-But what if you have a large project with several people working on it, and you constantly run tests that must contain
-some data from production? For example, statuses, lists and other important data. When do you have everything tied to
-specific identifiers and enums?
-
-This package will help you in this case! It "sees" when you call the console command `php artisan schema:dump` and
-unloads the data from your selected tables into SQL file.
-
-All you need to do is install the package and add the new setting to the `config/database.php` file and that's it.
+There is a solution!
 
 ## Requirements
 
