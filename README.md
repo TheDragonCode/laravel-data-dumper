@@ -14,6 +14,12 @@ The [squashing migrations](https://laravel.com/docs/migrations#squashing-migrati
 
 There is a solution!
 
+### How it works?
+
+After installing and configuring the package, you simply run the console command `php artisan schema:dump` (with or without flags - it's up to you), and the final SQL dump file will contain the data structure including the contents of the tables you specified at the configuration stage.
+
+This will allow you to painlessly execute the `php artisan schema:dump --prune` command, which will remove unnecessary migration files.
+
 ## Requirements
 
 - Laravel 10, 11
