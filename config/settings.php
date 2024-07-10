@@ -15,6 +15,7 @@ return [
         'tables' => [
             // 'foo',
             // 'bar',
+            // App\Models\Settings::class,
         ],
     ],
 ];

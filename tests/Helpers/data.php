@@ -26,5 +26,6 @@ expect()->extend('toBeContainsMigrations', function () {
     expect($this->value)
         ->toContain('2024_03_15_000001_foo')
         ->toContain('2024_03_15_000002_bar')
-        ->toContain('2024_03_15_000003_baz');
+        ->toContain('2024_03_15_000003_baz')
+        ->toContain('2024_07_10_222137_articles');
 });
