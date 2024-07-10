@@ -16,5 +16,6 @@ it('checks the export of data from tables to a dump file', function () {
         ->toBeContainsMigrations()
         ->toBeDataContains('foo')
         ->toBeDataContains('bar')
+        ->toBeDataContains('articles')
         ->notToBeDataContains('baz');
 })->group('SQLite', 'MySQL', 'Postgres');

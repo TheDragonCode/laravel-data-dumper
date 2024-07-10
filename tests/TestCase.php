@@ -26,6 +26,7 @@ abstract class TestCase extends BaseTestCase
         $config->set('database.schema.tables', [
             tableName('foo'),
             tableName('bar'),
+            tableName('articles'),
         ]);
 
         $config->set('database.default', env('DB_CONNECTION', 'sqlite'));
