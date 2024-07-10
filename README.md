@@ -25,7 +25,7 @@ This will allow you to painlessly execute the `php artisan schema:dump --prune` 
 - PHP 8.2 or higher
 - Databases:
   - Sqlite 3
-  - MySQL 5.7, 8.0, 8.1, 8.2, 8.3
+  - MySQL 5.7, 8, 9
   - PostgreSQL 12, 13, 14, 15, 16
 
 ## Installation
@@ -67,6 +67,7 @@ return [
         'tables' => [
             // 'foo',
             // 'bar',
+            // App\Models\Article::class,
         ],
     ],
 ];
