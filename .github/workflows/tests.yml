@@ -10,7 +10,7 @@ jobs:
         strategy:
             fail-fast: true
             matrix:
-                php: [ "8.2", "8.3" ]
+                php: [ "8.2", "8.3", "8.4" ]
                 laravel: [ "10.0", "11.0" ]
         
         name: PHP ${{ matrix.php }}, Laravel ${{ matrix.laravel }}, SQLite
@@ -38,7 +38,7 @@ jobs:
         strategy:
             fail-fast: true
             matrix:
-                php: [ "8.2", "8.3" ]
+                php: [ "8.2", "8.3", "8.4" ]
                 laravel: [ "10.0", "11.0" ]
                 mysql: [ "5.7", "8", "9" ]
         
@@ -85,9 +85,9 @@ jobs:
         strategy:
             fail-fast: true
             matrix:
-                php: [ "8.2", "8.3" ]
+                php: [ "8.2", "8.3", "8.4" ]
                 laravel: [ "10.0", "11.0" ]
-                psql: [ "12", "13", "14", "15", "16" ]
+                psql: [ "12", "13", "14", "15", "16", "17" ]
         
         name: PHP ${{ matrix.php }}, Laravel ${{ matrix.laravel }}, PostgreSQL ${{ matrix.psql }}
         
