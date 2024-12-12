@@ -16,6 +16,9 @@ return [
             // 'foo',
             // 'bar',
             // App\Models\Settings::class,
+
+            // 'qwerty1' => ['column_name_1', 'database/foo'],
+            // 'qwerty2' => ['column_name_2', __DIR__ . '/../bar'],
         ],
     ],
 ];

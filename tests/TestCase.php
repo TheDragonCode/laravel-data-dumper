@@ -27,6 +27,8 @@ abstract class TestCase extends BaseTestCase
             tableName('foo'),
             tableName('bar'),
             tableName('articles'),
+            tableName('qwerty1') => [columnName('qwerty1'), base_path('to_delete/first')],
+            tableName('qwerty2') => [columnName('qwerty2'), 'to_delete/second'],
         ]);
 
         $config->set('database.default', env('DB_CONNECTION', 'sqlite'));

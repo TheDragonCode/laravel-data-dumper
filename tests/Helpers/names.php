@@ -4,7 +4,14 @@ declare(strict_types=1);
 
 function names(): array
 {
-    return ['foo', 'bar', 'baz', 'articles'];
+    return [
+        'foo',
+        'bar',
+        'baz',
+        'articles',
+        'qwerty1',
+        'qwerty2',
+    ];
 }
 
 function tableName(string $name): string

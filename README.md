@@ -9,38 +9,43 @@
 
 ## Introduction
 
-The [squashing migrations](https://laravel.com/docs/migrations#squashing-migrations) in Laravel does not export data from tables?
+The [squashing migrations](https://laravel.com/docs/migrations#squashing-migrations) in Laravel does not export data
+from tables?
 
 There is a solution!
 
 ### How it works?
 
-After installing and configuring the package, you simply run the console command `php artisan schema:dump` (with or without flags - it's up to you), and the final SQL dump file will contain the data structure including the contents of the tables you specified at the configuration stage.
+After installing and configuring the package, you simply run the console command `php artisan schema:dump` (with or
+without flags - it's up to you), and the final SQL dump file will contain the data structure including the contents of
+the tables you specified at the configuration stage.
 
-This will allow you to painlessly execute the `php artisan schema:dump --prune` command, which will remove unnecessary migration files.
+This will allow you to painlessly execute the `php artisan schema:dump --prune` command, which will remove unnecessary
+migration files.
 
 ## Requirements
 
 - Laravel 10, 11
 - PHP 8.2 or higher
 - Databases:
-  - Sqlite 3
-  - MySQL 5.7, 8, 9
-  - PostgreSQL 12, 13, 14, 15, 16
+    - Sqlite 3
+    - MySQL 5.7, 8, 9
+    - PostgreSQL 12, 13, 14, 15, 16, 17
 
 ## Installation
 
-To get the latest version of `Database Data Dumper`, simply require the project using [Composer](https://getcomposer.org):
+To get the latest version of `Database Data Dumper`, simply require the project
+using [Composer](https://getcomposer.org):
 
 ```Bash
-composer require dragon-code/laravel-data-dumper --dev
+composer require dragon-code/laravel-data-dumper
 ```
 
-Or manually update `require-dev` block of `composer.json` and run `composer update`.
+Or manually update `require` block of `composer.json` and run `composer update`.
 
 ```json
 {
-    "require-dev": {
+    "require": {
         "dragon-code/laravel-data-dumper": "^1.0"
     }
 }
@@ -48,7 +53,7 @@ Or manually update `require-dev` block of `composer.json` and run `composer upda
 
 ## Configuration
 
-Since Laravel's mechanism for publishing configuration files does not allow them to be merged on the fly,
+Since Laravel mechanism for publishing configuration files does not allow them to be merged on the fly,
 a new array element must be added to the [`config/database.php`](config/settings.php) file:
 
 ```php
@@ -68,6 +73,9 @@ return [
             // 'foo',
             // 'bar',
             // App\Models\Article::class,
+
+            // 'qwerty1' => ['column_name_1', 'database/foo'],
+            // 'qwerty2' => ['column_name_2', __DIR__ . '/../bar'],
         ],
     ],
 ];
@@ -77,6 +85,17 @@ After that, add to the array the names of the tables for which you want to expor
 
 That's it. Now you can run the [`php artisan schema:dump`](https://laravel.com/docs/migrations#squashing-migrations)
 console command and enjoy the result.
+
+> Note
+>
+> If you need to delete files from a folder to which a table is related (for example, the `migrations` table),
+> you can specify an array of two values in the parameter, where the first element should be the name of the column
+> containing the file name, and the second element should be absolute or relative folder path.
+
+> Attention!
+>
+> Laravel does not know how to report the presence of the `--prune` parameter when calling the `artisan schema:dump`
+> console command, so specifying paths to folders will always delete files from them.
 
 
 ## License
