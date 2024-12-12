@@ -10,7 +10,7 @@ return new class extends Migration {
     protected function fillTable(): void
     {
         circleProcess(fn (int $i) => $this->table()->insert([
-            $this->column() => sprintf('sub/qwerty2File%s.stub', $i),
+            $this->column() => sprintf('sub/qwerty2File%s', $i),
         ]));
     }
 };
