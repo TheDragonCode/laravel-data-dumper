@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace DragonCode\LaravelDataDumper\Service;
 
 use DragonCode\Support\Facades\Filesystem\File;
+use DragonCode\Support\Facades\Helpers\Str;
 
 class Files
 {
@@ -12,6 +13,10 @@ class Files
     {
         if (! $dir = static::directory($path)) {
             return;
+        }
+
+        if (! file_exists($dir . '/' . $filename)) {
+            $filename = static::findFile($dir, $filename);
         }
 
         File::ensureDelete($dir . '/' . $filename);
@@ -24,5 +29,17 @@ class Files
         }
 
         return realpath(base_path($path));
+    }
+
+    protected static function findFile(string $path, string $filename): string
+    {
+        return File::names(
+            $path,
+            fn (string $name) => Str::contains(
+                str_replace('\\', '/', $name),
+                str_replace('\\', '/', $filename)
+            ),
+            recursive: true
+        )[0];
     }
 }
