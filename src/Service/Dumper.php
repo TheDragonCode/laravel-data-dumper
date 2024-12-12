@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Schema;
 
 class Dumper
 {
+    public function __construct(
+        protected readonly Files $files
+    ) {}
+
     public function dump(Connection $connection, string $path, array $tables): void
     {
         foreach ($tables as $table => $params) {
@@ -44,7 +48,7 @@ class Dumper
             fn (Builder $query) => $query->lazyById(),
             fn (Builder $query) => $query->lazyById(column: $column),
         )->each(
-            fn ($item) => Files::delete($path, $item->{$column})
+            fn ($item) => $this->files->delete($path, $item->{$column})
         );
     }
 

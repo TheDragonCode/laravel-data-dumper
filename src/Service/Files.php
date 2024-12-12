@@ -4,25 +4,26 @@ declare(strict_types=1);
 
 namespace DragonCode\LaravelDataDumper\Service;
 
+use Closure;
 use DragonCode\Support\Facades\Filesystem\File;
 use DragonCode\Support\Facades\Helpers\Str;
 
 class Files
 {
-    public static function delete(string $path, string $filename): void
+    public function delete(string $path, string $filename): void
     {
-        if (! $dir = static::directory($path)) {
+        if (! $dir = $this->directory($path)) {
             return;
         }
 
         if (! file_exists($dir . '/' . $filename)) {
-            $filename = static::findFile($dir, $filename);
+            $filename = $this->findFile($dir, $filename);
         }
 
         File::ensureDelete($dir . '/' . $filename);
     }
 
-    protected static function directory(string $path): false|string
+    protected function directory(string $path): false|string
     {
         if (realpath($path) && is_dir($path)) {
             return rtrim($path, '\\/');
@@ -31,15 +32,20 @@ class Files
         return realpath(base_path($path));
     }
 
-    protected static function findFile(string $path, string $filename): string
+    protected function findFile(string $path, string $filename): string
     {
-        return File::names(
-            $path,
-            fn (string $name) => Str::contains(
-                str_replace('\\', '/', $name),
-                str_replace('\\', '/', $filename)
-            ),
-            recursive: true
-        )[0];
+        return $this->find($path, function (string $name) use ($filename) {
+            return Str::contains($this->resolvePath($name), $this->resolvePath($filename));
+        }) ?? $filename;
+    }
+
+    protected function find(string $path, Closure $when): ?string
+    {
+        return File::names($path, $when, true)[0] ?? null;
+    }
+
+    protected function resolvePath(string $path): string
+    {
+        return str_replace('\\', '/', $path);
     }
 }
