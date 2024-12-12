@@ -8,7 +8,7 @@ expect()->extend('toBeFilledTables', function () {
     foreach (names() as $name) {
         expect(
             DB::table(tableName($name))->count()
-        )->toBe(10);
+        )->toBe($name === 'qwerty1' ? 5 : 10);
     }
 
     return $this;

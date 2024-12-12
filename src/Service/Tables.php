@@ -11,14 +11,29 @@ class Tables
 {
     public function dumpable(): array
     {
-        return array_intersect($this->available(), $this->tables());
+        return collect($this->tables())
+            ->intersectByKeys(collect($this->available())->flip())
+            ->all();
     }
 
     protected function tables(): array
     {
-        return collect(config('database.schema.tables', []))
-            ->map(fn (string $table) => $this->fromModels($table))
-            ->all();
+        return collect(config('database.schema.tables'))
+            ->mapWithKeys(function (array|string $value, int|string $key) {
+                if (is_numeric($key)) {
+                    $value = is_string($value) && ! is_numeric($value) ? $value : null;
+
+                    return [$this->fromModels($value) => null];
+                }
+
+                if (is_string($key) && is_array($value)) {
+                    return [$this->fromModels($key) => $value];
+                }
+
+                return [null => null];
+            })->reject(
+                fn (mixed $value, ?string $key) => is_null($key)
+            )->all();
     }
 
     protected function available(): array
@@ -31,8 +46,12 @@ class Tables
         return Schema::getTables();
     }
 
-    protected function fromModels(Model|string $table): string
+    protected function fromModels(Model|string|null $table): ?string
     {
+        if (empty($table)) {
+            return null;
+        }
+
         if (! class_exists($table)) {
             return $table;
         }

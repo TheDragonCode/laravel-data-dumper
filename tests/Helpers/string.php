@@ -28,5 +28,7 @@ expect()->extend('toBeDumped', function (int $count) {
         ->toBeWordsCount(sprintf($this->value, $migrations), $count)
         ->notToBeDataContains('foo')
         ->notToBeDataContains('bar')
-        ->notToBeDataContains('baz');
+        ->notToBeDataContains('baz')
+        ->notToBeDataContains('qwerty1')
+        ->notToBeDataContains('qwerty2');
 });

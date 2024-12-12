@@ -17,5 +17,7 @@ it('checks the export of data from tables to a dump file', function () {
         ->toBeDataContains('foo')
         ->toBeDataContains('bar')
         ->toBeDataContains('articles')
+        ->toBeDataContains('qwerty1', fn (int $i) => "qwerty1File$i.stub", fn (int $i) => $i % 2 === 0)
+        ->toBeDataContains('qwerty2', fn (int $i) => "sub/qwerty2File$i.stub")
         ->notToBeDataContains('baz');
 })->group('SQLite', 'MySQL', 'Postgres');
