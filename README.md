@@ -86,16 +86,19 @@ After that, add to the array the names of the tables for which you want to expor
 That's it. Now you can run the [`php artisan schema:dump`](https://laravel.com/docs/migrations#squashing-migrations)
 console command and enjoy the result.
 
-> Note
+> [!NOTE]
 >
 > If you need to delete files from a folder to which a table is related (for example, the `migrations` table),
 > you can specify an array of two values in the parameter, where the first element should be the name of the column
 > containing the file name, and the second element should be absolute or relative folder path.
 
-> Attention!
+> [!WARNING]
 >
-> Laravel does not know how to report the presence of the `--prune` parameter when calling the `artisan schema:dump`
-> console command, so specifying paths to folders will always delete files from them.
+> Laravel 11.35.2 and below does not know how to report the presence of the `--prune` parameter when calling the
+> `artisan schema:dump` console command, so specifying paths to folders will always delete files from them.
+>
+> Starting with Laravel version 11.36, files will be deleted only when calling the console command with the
+> `--prune` parameter.
 
 
 ## License
