@@ -4,22 +4,22 @@ declare(strict_types=1);
 
 namespace DragonCode\LaravelDataDumper\Listeners;
 
-use DragonCode\LaravelDataDumper\Service\Dumper;
+use DragonCode\LaravelDataDumper\Service\Files;
 use DragonCode\LaravelDataDumper\Service\Tables;
+use Illuminate\Database\Events\MigrationsPruned;
 use Illuminate\Database\Events\SchemaDumped;
 
-class DumpListener
+class FilesListener extends Listener
 {
     public function __construct(
         protected readonly Tables $tables,
-        protected readonly Dumper $dumper
+        protected readonly Files $files
     ) {}
 
-    public function handle(SchemaDumped $event): void
+    public function handle(MigrationsPruned|SchemaDumped $event): void
     {
-        $this->dumper->dump(
+        $this->files->clean(
             $event->connection,
-            $event->path,
             $this->tables->dumpable()
         );
     }
