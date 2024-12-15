@@ -52,7 +52,9 @@ class Files
             return rtrim($path, '\\/');
         }
 
-        if (is_dir($path = realpath(base_path($path)))) {
+        $path = realpath(base_path($path));
+
+        if ($path && is_dir($path)) {
             return rtrim($path, '\\/');
         }
 
