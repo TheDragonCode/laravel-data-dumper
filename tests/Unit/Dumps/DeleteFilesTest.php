@@ -37,7 +37,7 @@ it('checks for file deletion on new version of Laravel', function () {
     circleProcess(fn (int $i) => File::store(base_path("to_delete/second/sub/qwerty2File$i.stub"), '1'));
     circleProcess(fn (int $i) => File::store(base_path("to_delete/third/file$i.stub"), '1'));
 
-    Artisan::call(DumpCommand::class, ['--path' => dumpStoragePath(), '----prune' => true]);
+    Artisan::call(DumpCommand::class, ['--path' => dumpStoragePath(), '--prune' => true]);
 
     circleProcess(fn (int $i) => expect(
         file_exists(base_path("to_delete/first/qwerty1File$i.stub"))
