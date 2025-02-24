@@ -29,9 +29,6 @@ jobs:
             -   name: Install dependencies
                 run: composer require laravel/framework:^${{ matrix.laravel }}
 
-            -   name: Update PHPUnit Configuration
-                run: vendor/bin/phpunit --migrate-configuration
-
             -   name: Execute tests
                 run: vendor/bin/pest --group SQLite
     
@@ -74,9 +71,6 @@ jobs:
                     timeout_minutes: 5
                     max_attempts: 5
                     command: composer require laravel/framework:^${{ matrix.laravel }}
-
-            -   name: Update PHPUnit Configuration
-                run: vendor/bin/phpunit --migrate-configuration
 
             -   name: Execute tests
                 run: vendor/bin/pest --group MySQL
@@ -129,9 +123,6 @@ jobs:
 
             -   name: Install dependencies
                 run: composer require laravel/framework:^${{ matrix.laravel }}
-
-            -   name: Update PHPUnit Configuration
-                run: vendor/bin/phpunit --migrate-configuration
 
             -   name: Execute tests
                 run: vendor/bin/pest --group Postgres
