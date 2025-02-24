@@ -11,7 +11,7 @@ jobs:
             fail-fast: true
             matrix:
                 php: [ "8.2", "8.3", "8.4" ]
-                laravel: [ "10.0", "11.0" ]
+                laravel: [ "10.0", "11.0", "12.0" ]
         
         name: PHP ${{ matrix.php }}, Laravel ${{ matrix.laravel }}, SQLite
         
@@ -29,6 +29,9 @@ jobs:
             -   name: Install dependencies
                 run: composer require laravel/framework:^${{ matrix.laravel }}
 
+            -   name: Touch database
+                run: mkdir tests/tmp && touch tests/tmp/database.sqlite
+
             -   name: Execute tests
                 run: vendor/bin/pest --group SQLite
     
@@ -39,7 +42,7 @@ jobs:
             fail-fast: true
             matrix:
                 php: [ "8.2", "8.3", "8.4" ]
-                laravel: [ "10.0", "11.0" ]
+                laravel: [ "10.0", "11.0", "12.0" ]
                 mysql: [ "5.7", "8", "9" ]
         
         name: PHP ${{ matrix.php }}, Laravel ${{ matrix.laravel }}, MySQL ${{ matrix.mysql }}
@@ -86,7 +89,7 @@ jobs:
             fail-fast: true
             matrix:
                 php: [ "8.2", "8.3", "8.4" ]
-                laravel: [ "10.0", "11.0" ]
+                laravel: [ "10.0", "11.0", "12.0" ]
                 psql: [ "12", "13", "14", "15", "16", "17" ]
         
         name: PHP ${{ matrix.php }}, Laravel ${{ matrix.laravel }}, PostgreSQL ${{ matrix.psql }}

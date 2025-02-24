@@ -40,15 +40,15 @@
         "php": "^8.2",
         "composer-runtime-api": "^2.2",
         "dragon-code/support": "^6.13",
-        "illuminate/config": "^10.0 || ^11.0",
-        "illuminate/database": "^10.0 || ^11.0",
-        "illuminate/support": "^10.0 || ^11.0"
+        "illuminate/config": "^10.0 || ^11.0 || ^12.0",
+        "illuminate/database": "^10.0 || ^11.0 || ^12.0",
+        "illuminate/support": "^10.0 || ^11.0 || ^12.0"
     },
     "require-dev": {
         "ext-pdo": "*",
         "mockery/mockery": "^1.3.1",
-        "orchestra/testbench": "^8.0 || ^9.0",
-        "pestphp/pest": "^2.34"
+        "orchestra/testbench": "^8.0 || ^9.0 || ^10.0",
+        "pestphp/pest": "^2.34 || ^3.0"
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
