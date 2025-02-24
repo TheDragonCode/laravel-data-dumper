@@ -29,6 +29,9 @@ jobs:
             -   name: Install dependencies
                 run: composer require laravel/framework:^${{ matrix.laravel }}
 
+            -   name: Touch database
+                run: mkdir tests/tmp && touch tests/tmp/database.sqlite
+
             -   name: Execute tests
                 run: vendor/bin/pest --group SQLite
     
