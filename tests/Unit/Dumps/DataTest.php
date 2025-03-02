@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Console\DumpCommand;
 use Illuminate\Support\Facades\Artisan;
 

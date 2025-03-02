@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use DragonCode\Support\Facades\Filesystem\Directory;
 use DragonCode\Support\Facades\Filesystem\File;
 use Illuminate\Database\Console\DumpCommand;
