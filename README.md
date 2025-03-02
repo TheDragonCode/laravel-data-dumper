@@ -25,7 +25,7 @@ migration files.
 
 ## Requirements
 
-- Laravel 10, 11
+- Laravel 10, 11, 12
 - PHP 8.2 or higher
 - Databases:
     - Sqlite 3
