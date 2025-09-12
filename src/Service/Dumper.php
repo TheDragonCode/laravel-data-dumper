@@ -37,10 +37,10 @@ class Dumper
 
     protected function schemaState(Connection $connection): ?SchemaState
     {
-        return match (get_class($connection)) {
-            SQLiteConnection::class   => new SQLiteSchemaState($connection, null, null),
-            MySqlConnection::class    => new MySqlSchemaState($connection, null, null),
-            PostgresConnection::class => new PostgresSchemaState($connection, null, null),
+        return match (true) {
+            $connection instanceof SQLiteConnection   => new SQLiteSchemaState($connection, null, null),
+            $connection instanceof MySqlConnection   => new MySqlSchemaState($connection, null, null),
+            $connection instanceof PostgresConnection => new PostgresSchemaState($connection, null, null),
             default                   => null
         };
     }
