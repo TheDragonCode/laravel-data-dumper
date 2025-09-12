@@ -56,6 +56,6 @@ class Tables
             return $table;
         }
 
-        return (new $table())->getTable();
+        return (new $table)->getTable();
     }
 }

@@ -39,9 +39,9 @@ class Dumper
     {
         return match (true) {
             $connection instanceof SQLiteConnection   => new SQLiteSchemaState($connection, null, null),
-            $connection instanceof MySqlConnection   => new MySqlSchemaState($connection, null, null),
+            $connection instanceof MySqlConnection    => new MySqlSchemaState($connection, null, null),
             $connection instanceof PostgresConnection => new PostgresSchemaState($connection, null, null),
-            default                   => null
+            default                                   => null
         };
     }
 
