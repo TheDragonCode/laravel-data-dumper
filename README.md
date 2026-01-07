@@ -1,6 +1,6 @@
 # Database Data Dumper for Laravel
 
-![the dragon code database data dumper](https://preview.dragon-code.pro/the-dragon-code/database-data-dumper.svg?brand=laravel)
+![the dragon code database data dumper](https://banners.beyondco.de/Database%20Data%20Dumper.png?theme=light&packageManager=composer+require&packageName=dragon-code%2Flaravel-data-dumper&pattern=topography&style=style_2&description=by+The+Dragon+Code&md=1&showWatermark=1&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg)
 
 [![Stable Version][badge_stable]][link_packagist]
 [![Total Downloads][badge_downloads]][link_packagist]
