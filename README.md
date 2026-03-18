@@ -28,12 +28,12 @@ migration files.
 
 ## Requirements
 
-- Laravel 10, 11, 12
+- Laravel 10, 11, 12, 13
 - PHP 8.2 or higher
 - Databases:
     - Sqlite 3
     - MySQL 5.7, 8, 9
-    - PostgreSQL 12, 13, 14, 15, 16, 17
+    - PostgreSQL 12, 13, 14, 15, 16, 17, 18
 
 ## Installation
 
